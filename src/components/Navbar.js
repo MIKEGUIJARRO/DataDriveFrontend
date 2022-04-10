@@ -20,8 +20,8 @@ export const Navbar = () => {
                         </Link>
                     </div>
                     <ul className='flex flex-row space-x-4'>
-                        <li><Link to='/signin'>Sign In</Link></li>
-                        <li><Link to='/signup'>Create Account</Link></li>
+                        <li><Link to='/auth' state={{auth: 'signin'}}>Sign In</Link></li>
+                        <li><Link to='/auth' state={{auth: 'signup'}}>Create Account</Link></li>
                     </ul>
                 </div>
             </Scaffold>

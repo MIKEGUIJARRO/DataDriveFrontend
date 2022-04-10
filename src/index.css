@@ -2,16 +2,151 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+
+@layer base {
+  html {
+      scroll-behavior: smooth;
+  }
+
+  h1 {
+      @apply font-extrabold text-6xl text-gray-900;
+  }
+
+  h2 {
+      @apply font-extrabold text-5xl text-gray-900;
+  }
+
+  h3 {
+      @apply font-extrabold text-4xl text-gray-900;
+  }
+
+  h4 {
+      @apply font-extrabold text-3xl text-gray-900;
+  }
+
+  h5 {
+      @apply font-extrabold text-2xl text-gray-900;
+  }
+
+  h6 {
+      @apply font-extrabold text-xl text-gray-900;
+  }
+
+  input, textarea {
+      @apply bg-gray-100 px-6 py-4 rounded-md ring-inset focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent;
+  }
+
+  p,li {
+      @apply text-gray-600;
+  }
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+
+@layer components {
+
+  /* 
+  ** Font colors 
+  */
+
+  /* Primary colors */
+  .color-primary {
+      @apply text-red-500;
+  }
+  
+  /* Grayscale colors */
+  .color-title {
+      @apply text-gray-900;
+  }
+
+  .color-body {
+      @apply text-gray-600;
+  }
+
+  .color-label {
+      @apply text-gray-400;
+  }
+
+  .color-line {
+      @apply text-gray-300;
+  }
+
+  .color-light-bg {
+      @apply text-gray-200;
+  }
+
+  .color-off-white {
+      @apply text-white;
+  }
+
+
+  /* 
+  ** Background colors
+  */
+
+  /* Primary colors */
+  .bg-primary {
+      @apply bg-red-500;
+  }
+
+  /* Grayscale colors */
+  .bg-title {
+      @apply bg-gray-900;
+  }
+
+  .bg-body {
+      @apply bg-gray-600;
+  }
+
+  .bg-label {
+      @apply bg-gray-400;
+  }
+
+  .bg-line {
+      @apply bg-gray-300;
+  }
+
+  .bg-light-bg {
+      @apply bg-gray-200;
+  }
+
+  .bg-off-white {
+      @apply bg-white;
+  }
+
+  /* 
+  ** Icons
+  */
+
+  .icon-bg {
+      @apply h-24 w-24;
+  }
+
+  .icon-md {
+      @apply h-16 w-16;
+  }
+
+  .icon-sm {
+      @apply h-8 w-8;
+  }
+
+  .icon-xs {
+      @apply h-6 w-6;
+  }
+
+  /* 
+  ** Buttons
+  */
+
+  /* Elements */
+  .chip {
+      @apply text-xs font-bold p-5 bg-gray-700 text-white rounded-full px-4 py-1 mt-2 mr-2 transition duration-150 ease-in-out transform hover:scale-105 hover:bg-gray-900 select-none;
+  }
+
+  .btn-main {
+      @apply border border-gray-800 bg-gray-800 px-6 py-2 rounded-full hover:bg-gray-900 hover:border-gray-900 transition;
+  }
+
+  .btn-main-outline {
+      @apply bg-white border-gray-200 border color-title px-6 py-2 rounded-full hover:bg-gray-800 hover:text-white transition hover:border-gray-800;
+  }
 }
