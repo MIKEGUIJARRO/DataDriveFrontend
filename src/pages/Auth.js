@@ -1,27 +1,25 @@
 import React from 'react'
 import gLogo from '../assets/g_logo.svg';
 import logo from '../assets/logo.svg';
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { GoogleLogin } from 'react-google-login';
 import { useUser } from '../hooks/useUser';
 
 export default function Auth() {
     const location = useLocation();
     const { auth } = location.state;
-
+    const navigate = useNavigate();
     const { authenticateUser } = useUser();
 
     const clientId = process.env.REACT_APP_CLIENT_ID_GOOGLE;
-    console.log(clientId);
-
 
     const googleSuccess = async (res) => {
-        const response = res?.profileObj;
+        const profile = res?.profileObj;
         const token = res?.tokenId;
-        console.log(response);
 
         try {
-            authenticateUser(response);
+            authenticateUser({ profile, token });
+            navigate('/');
         } catch (e) {
             console.log(e);
         }

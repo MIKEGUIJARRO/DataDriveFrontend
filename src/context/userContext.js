@@ -6,9 +6,11 @@ export const UserContext = createContext(null);
 const userReducer = (state, action) => {
     switch (action.type) {
         case AUTH:
-            return { ...state, user: action.payload }
+            localStorage.setItem('profile', JSON.stringify(action.payload));
+            return { ...state, authData: action.payload }
         case LOGOUT:
-            return { ...state }
+            localStorage.clear();
+            return { ...state, authData: null }
         default:
             return state;
     }
@@ -17,11 +19,11 @@ const userReducer = (state, action) => {
 export const UserProvider = ({ children }) => {
 
     const [state, dispatchFn] = useReducer(userReducer, {
-        user: null,
+        authData: JSON.parse(localStorage.getItem('profile')),
     });
 
-    const authenticateUser = (user) => {
-        dispatchFn({ type: AUTH, payload: user });
+    const authenticateUser = (profile) => {
+        dispatchFn({ type: AUTH, payload: profile });
     };
 
     const logoutUser = () => {

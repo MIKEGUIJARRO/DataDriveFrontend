@@ -1,13 +1,23 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import logo from './../assets/logo.svg';
 import { Link } from "react-router-dom";
 import Scaffold from './Scaffold';
 import { useUser } from '../hooks/useUser';
+import { HiChevronDown } from "react-icons/hi";
+import decode from 'jwt-decode';
 
 
 export const Navbar = () => {
 
-    const { user } = useUser();
+    const { authData, logoutUser } = useUser();
+
+    useEffect(() => {
+        const token = authData?.token;
+        if (token) {
+            const decodedToken = decode(token);
+            if (new Date().getTime() > decodedToken.exp * 1000) logoutUser();
+        }
+    }, []);
 
     return (
         <div className='border-solid border-b border-gray-200'>
@@ -23,9 +33,17 @@ export const Navbar = () => {
                             <img src={logo} alt='Logo' className='w-full h-auto' />
                         </Link>
                     </div>
-                    {user ?
-                        <div>
-                            {user.name}
+                    {authData ?
+                        <div className='flex flex-row justify-center items-center space-x-2'>
+                            <div className='w-8 h-8 '>
+                                <img src={`${authData.profile.imageUrl}`} alt='User profile picture' className='w-full h-auto rounded-full' />
+                            </div>
+                            <button
+                                onClick={logoutUser}
+                                className='flex flex-row justify-center items-center space-x-2'>
+                                <p>{authData.profile.name}</p>
+                                <HiChevronDown />
+                            </button>
                         </div>
                         :
                         <ul className='flex flex-row space-x-8'>
