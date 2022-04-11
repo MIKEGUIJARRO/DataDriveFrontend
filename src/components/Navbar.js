@@ -36,7 +36,7 @@ export const Navbar = () => {
                     {authData ?
                         <div className='flex flex-row justify-center items-center space-x-2'>
                             <div className='w-8 h-8 '>
-                                <img src={`${authData.profile.imageUrl}`} alt='User profile picture' className='w-full h-auto rounded-full' />
+                                <img src={authData.profile.imageUrl} alt='User profile' className='w-full h-auto rounded-full' />
                             </div>
                             <button
                                 onClick={logoutUser}
