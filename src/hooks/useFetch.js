@@ -43,7 +43,7 @@ export const useFetch = (url, fetchOptions, processData) => {
                     console.log('The fetch was aborted');
                 } else {
                     setIsPending(false);
-                    setError('Could not fetch data...');
+                    setError(e.message);
                 }
             }
         };

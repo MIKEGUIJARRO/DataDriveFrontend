@@ -3,6 +3,8 @@ import { AUTH, LOGOUT } from '../constants/actionTypes';
 
 export const UserContext = createContext(null);
 
+
+
 const userReducer = (state, action) => {
     switch (action.type) {
         case AUTH:
@@ -28,6 +30,7 @@ export const UserProvider = ({ children }) => {
 
     const logoutUser = () => {
         dispatchFn({ type: LOGOUT, payload: null });
+        window.open("http://localhost:5000/api/v1/auth/logout", "_self");
     }
 
     return (
