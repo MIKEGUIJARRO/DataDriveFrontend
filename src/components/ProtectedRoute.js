@@ -3,7 +3,6 @@ import { Navigate, useLocation, Outlet } from 'react-router-dom';
 import { useUser } from '../hooks/useUser'
 
 const ProtectedRoute = ({ children }) => {
-
     const { authData } = useUser();
     const location = useLocation();
 

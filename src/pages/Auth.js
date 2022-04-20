@@ -1,7 +1,8 @@
 import React from 'react'
 import gLogo from '../assets/g_logo.svg';
 import logo from '../assets/logo.svg';
-import { Link, useLocation } from 'react-router-dom'
+import { Link, Navigate, useLocation } from 'react-router-dom'
+import { useUser } from '../hooks/useUser';
 
 export default function Auth() {
     const location = useLocation();

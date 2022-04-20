@@ -11,6 +11,7 @@ import { useFetch } from './hooks/useFetch';
 import { useUser } from './hooks/useUser';
 import ProtectedRoute from './components/ProtectedRoute';
 import Profile from './pages/Profile';
+import ProtectedRouteLogged from './components/ProtectedRouteLogged';
 
 
 function App() {
@@ -43,10 +44,9 @@ function App() {
   console.log('user:', userData, 'pending:', userIsPending, 'error:', userError);
   return (
     <div className="App">
-
       <BrowserRouter>
         <Routes>
-          {/* Pages with footer and Navbar */}
+          {/* Pages with Footer and Navbar */}
           <Route element={<PageLayout />}>
             {/* Public routes */}
             <Route index path='/' element={<Landing />} />
@@ -57,8 +57,10 @@ function App() {
               <Route path='/profile' element={<Profile />} />
             </Route>
           </Route>
-          {/* Pages without any general structure */}
-          <Route path='/auth' element={userData?.user ? <Navigate to={'/home'} /> : <Auth />} />
+          {/* Pages without any Footer or Navbar */}
+          <Route element={<ProtectedRouteLogged />}>
+            <Route path='/auth' element={<Auth />} />
+          </Route>
           <Route path="*" element={<NotFound />} />
 
         </Routes>
