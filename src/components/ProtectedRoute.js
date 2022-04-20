@@ -1,19 +1,19 @@
-import React from 'react'
-import { Navigate, useLocation } from 'react-router-dom';
+import React, { useEffect, useState } from 'react'
+import { Navigate, useLocation, Outlet } from 'react-router-dom';
 import { useUser } from '../hooks/useUser'
 
-const RequireAuth = ({ children }) => {
+const ProtectedRoute = ({ children }) => {
 
     const { authData } = useUser();
     const location = useLocation();
 
-    if (!authData.profile) {
+    if (!authData) {
         return <Navigate to='/auth' state={{ from: location, auth: 'signup' }} replace={true} />
     }
 
     return (
-        children
+        <Outlet />
     )
 }
 
-export default RequireAuth
+export default ProtectedRoute

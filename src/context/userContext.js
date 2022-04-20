@@ -3,8 +3,6 @@ import { AUTH, LOGOUT } from '../constants/actionTypes';
 
 export const UserContext = createContext(null);
 
-
-
 const userReducer = (state, action) => {
     switch (action.type) {
         case AUTH:

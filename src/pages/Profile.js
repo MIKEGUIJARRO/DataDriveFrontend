@@ -1,15 +1,14 @@
 import React from 'react'
-import Scaffold from '../components/Scaffold';
+import Scaffold from '../components/Scaffold'
 
-const Home = () => {
-
+const Profile = () => {
     return (
         <div>
             <Scaffold>
-                Home
+                Profile
             </Scaffold>
         </div>
     )
 }
 
-export default Home
+export default Profile
