@@ -1,8 +1,7 @@
 import React from 'react'
 import gLogo from '../assets/g_logo.svg';
 import logo from '../assets/logo.svg';
-import { Link, Navigate, useLocation } from 'react-router-dom'
-import { useUser } from '../hooks/useUser';
+import { Link, useLocation } from 'react-router-dom'
 
 export default function Auth() {
     const location = useLocation();
@@ -40,7 +39,7 @@ export default function Auth() {
 
                         <button
                             onClick={googleAuth}
-                            className='flex flex-row justify-center items-center space-x-2 bg-blue-600 p-2 rounded-md select-none	'>
+                            className='flex flex-row justify-center items-center space-x-2 bg-blue-600 p-2 rounded-md select-none'>
                             <div className='bg-white w-6 rounded-full flex justify-center items-center p-1'>
                                 <img src={gLogo} alt='Logo Google' className='w-full h-auto' />
                             </div>

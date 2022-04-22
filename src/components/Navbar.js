@@ -26,8 +26,8 @@ export const Navbar = () => {
                     </div>
                     {authData ?
                         <DropdownMenu
-                            displayName={authData?.displayName}
-                            profilePic={authData?.photos[0]?.value}
+                            displayName={`${authData?.firstName} ${authData?.lastName}`}
+                            profilePic={authData?.profilePicture}
                             logoutHandler={logoutUser}
                         /> :
                         <ul className='flex flex-row space-x-8'>

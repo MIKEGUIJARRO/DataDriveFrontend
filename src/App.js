@@ -12,6 +12,7 @@ import { useUser } from './hooks/useUser';
 import ProtectedRoute from './components/ProtectedRoute';
 import Profile from './pages/Profile';
 import ProtectedRouteLogged from './components/ProtectedRouteLogged';
+import { Settings } from './pages/Settings';
 
 
 function App() {
@@ -55,6 +56,7 @@ function App() {
             <Route element={<ProtectedRoute />}>
               <Route path='/home' element={<Home />} />
               <Route path='/profile' element={<Profile />} />
+              <Route path='/settings' element={<Settings />} />
             </Route>
           </Route>
           {/* Pages without any Footer or Navbar */}

@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { HiChevronDown } from 'react-icons/hi';
+import { Link } from 'react-router-dom';
 
 const DropdownMenu = ({ profilePic, displayName, logoutHandler }) => {
     const [open, setOpen] = useState(false);
@@ -23,21 +24,25 @@ const DropdownMenu = ({ profilePic, displayName, logoutHandler }) => {
             {open &&
                 <div className='absolute right-0 mt-2 py-4 drop-shadow-lg bg-white rounded-md'>
                     <ul className='space-y-2'>
+
                         <li className='hover:bg-gray-100'>
-                            <button className='px-4 py-1'>
+                            <Link to={'/profile'} className='block px-4 py-1 w-full text-left'>
                                 Profile
-                            </button>
+                            </Link>
                         </li>
+
                         <li className='hover:bg-gray-100'>
-                            <button className='px-4 py-1'>
+                            <Link to={'/settings'} className='block px-4 py-1 w-full text-left'>
                                 Account Settings
-                            </button>
+                            </Link>
                         </li>
+
                         <li className='px-4'>
                             <hr />
                         </li>
+
                         <li className='hover:bg-gray-100'>
-                            <button className='px-4 py-1 w-full text-left' onClick={logoutHandler}>
+                            <button className='block px-4 py-1 w-full text-left' onClick={logoutHandler}>
                                 Logout
                             </button>
                         </li>
