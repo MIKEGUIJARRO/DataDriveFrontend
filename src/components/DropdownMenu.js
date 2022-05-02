@@ -11,13 +11,13 @@ const DropdownMenu = ({ profilePic, displayName, logoutHandler }) => {
     return (
         <div className='relative'>
             <div className='flex flex-row justify-center items-center space-x-2'>
-                <div className='w-8 h-8 '>
+                <div className='w-8 h-8 flex justify-center items-center'>
                     <img src={profilePic} alt='User profile' className='w-full h-auto rounded-full' />
                 </div>
                 <button
                     onClick={toggleMenu}
                     className='flex flex-row justify-center items-center space-x-2'>
-                    <p>{displayName}</p>
+                    {displayName}
                     <HiChevronDown />
                 </button>
             </div>

@@ -31,7 +31,9 @@ export const useFetch = (url, fetchOptions, processData) => {
 
                 const res = await fetch(url, { ...fetchOptions, signal: controller.signal });
                 if (!res.ok) {
-                    throw new Error(res.statusText);
+                    const resError = await res.json();
+                    console.log(resError)
+                    throw new Error(resError.error || res.statusText);
                 }
                 const resData = await res.json();
                 const processedData = processJson(resData);
@@ -52,7 +54,7 @@ export const useFetch = (url, fetchOptions, processData) => {
 
         // Cleanup function for unmouting phase
         return () => {
-            console.log('Unmounted hooks')
+            //console.log('Unmounted hooks')
             controller.abort();
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps

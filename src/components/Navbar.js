@@ -3,7 +3,6 @@ import logo from './../assets/logo.svg';
 import { Link } from "react-router-dom";
 import Scaffold from './Scaffold';
 import { useUser } from '../hooks/useUser';
-import { HiChevronDown } from "react-icons/hi";
 import DropdownMenu from './DropdownMenu';
 
 export const Navbar = () => {
@@ -20,7 +19,7 @@ export const Navbar = () => {
                         <li>Contact</li>
                     </ul>
                     <div className='w-48'>
-                        <Link to='/'>
+                        <Link to={authData ? '/home' : '/'}>
                             <img src={logo} alt='Logo' className='w-full h-auto' />
                         </Link>
                     </div>

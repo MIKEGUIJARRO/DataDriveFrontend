@@ -13,6 +13,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import Profile from './pages/Profile';
 import ProtectedRouteLogged from './components/ProtectedRouteLogged';
 import { Settings } from './pages/Settings';
+import File from './pages/File';
 
 
 function App() {
@@ -57,6 +58,7 @@ function App() {
               <Route path='/home' element={<Home />} />
               <Route path='/profile' element={<Profile />} />
               <Route path='/settings' element={<Settings />} />
+              <Route path='/file/:fileId' element={<File />} />
             </Route>
           </Route>
           {/* Pages without any Footer or Navbar */}
@@ -64,11 +66,8 @@ function App() {
             <Route path='/auth' element={<Auth />} />
           </Route>
           <Route path="*" element={<NotFound />} />
-
         </Routes>
       </BrowserRouter>
-
-
     </div>
   );
 }
