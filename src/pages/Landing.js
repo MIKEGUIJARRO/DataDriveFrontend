@@ -9,7 +9,7 @@ import { motion } from "framer-motion"
 export default function Landing() {
     return (
         <Scaffold>
-            <div className='mt-32 flex flex-row'>
+            <div className='mt-32 flex flex-row space-x-8'>
                 <div className='flex flex-col justify-center flex-1 shrink-0'>
                     <div className='space-y-8 items-center max-w-md w-full'>
                         <h1 className='bg-clip-text text-transparent bg-gradient-to-r from-cyan-500 to-blue-500 leading-normal'><div className='leading-none'>Automate your Google Docs workflow</div></h1>
@@ -19,7 +19,7 @@ export default function Landing() {
                     </div>
                 </div>
 
-                <div className='shrink-0'>
+                <div className='shrink-0 hidden lg:block'>
                     <motion.div 
                     animate={{
                         //scale: 1.1,
