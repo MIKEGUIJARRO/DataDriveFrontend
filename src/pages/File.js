@@ -51,7 +51,7 @@ const File = () => {
     const formHandler = () => {
         refHandlerCarousel.current.nextChildMethod()
     }
-
+    console.log(fileData);
     return (
         <div className=''>
             <Scaffold>
@@ -127,7 +127,7 @@ const File = () => {
                             {fileData.data.thumbnailLink &&
                                 <div className='inline-block drop-shadow-xl rounded-2xl overflow-hidden'>
                                     <img className='pointer-events-none	'
-                                        src={`https://drive.google.com/thumbnail?sz=w420&id=${fileData.data.id}`}
+                                        src={fileData.data.thumbnailLink}
                                         alt='Google doc thumbnail' />
                                 </div>
                             }

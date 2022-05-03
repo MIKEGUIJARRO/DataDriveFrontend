@@ -9,7 +9,7 @@ const DropdownMenu = ({ profilePic, displayName, logoutHandler }) => {
         setOpen((prevState) => !prevState);
     }
     return (
-        <div className='relative'>
+        <div className='relative z-50'>
             <div className='flex flex-row justify-center items-center space-x-2'>
                 <div className='w-8 h-8 flex justify-center items-center'>
                     <img src={profilePic} alt='User profile' className='w-full h-auto rounded-full' />
