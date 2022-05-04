@@ -15,7 +15,7 @@ export const Navbar = () => {
                 <div className='flex flex-row justify-between items-center m-auto py-1'>
                     <div className='w-48'>
                         <Link to={authData ? '/home' : '/'}>
-                            <img src={logo} alt='Logo' className='w-full h-auto' />
+                            <img referrerPolicy="no-referrer" src={logo} alt='Logo' className='w-full h-auto' />
                         </Link>
                     </div>
                     {authData ?

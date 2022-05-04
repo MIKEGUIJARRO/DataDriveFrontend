@@ -7,8 +7,6 @@ import Scaffold from '../components/Scaffold';
 import { useFetch } from '../hooks/useFetch';
 import { useForm } from '../hooks/useForm';
 import { HiDownload } from 'react-icons/hi';
-
-import { motion } from "framer-motion"
 import Carousel from '../components/Carousel';
 
 
@@ -19,19 +17,36 @@ const File = () => {
     const fileName = location.state?.fileName;
 
     const [file, setFile] = useState({ id: fileId, name: fileName || 'Loading...' });
-
-    const urlFile = `http://localhost:5000/api/v1/drive/file/${fileId}`;
-    const optionsFile = {
-        method: "GET",
-        credentials: "include",
-        headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Credentials": true,
+    const [fetchGetFile, setGetFetch] = useState({
+        url: `http://localhost:5000/api/v1/drive/file/${fileId}`,
+        options: {
+            method: "GET",
+            credentials: "include",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Credentials": true,
+            }
         }
-    };
+    });
 
-    const { data: fileData, error: fileError, isPending: fileIsPending } = useFetch(urlFile, optionsFile);
+    const [fetchPostFile, setPostFetch] = useState({
+        url: ``,
+        options: {
+            method: "POST",
+            credentials: "include",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Credentials": true,
+            },
+        }
+    });
+
+    const { data: fileData, error: fileError, isPending: fileIsPending } = useFetch(fetchGetFile.url, fetchGetFile.options);
+    const { data: downloadData, error: downloadError, isPending: downloadIsPending } = useFetch(fetchPostFile.url, fetchPostFile.options);
+
+
     const { values, handleInputChange, reset, updateBulkValues } = useForm();
 
     const refHandlerCarousel = useRef(null);
@@ -51,23 +66,49 @@ const File = () => {
     const formHandler = () => {
         refHandlerCarousel.current.nextChildMethod()
     }
-    console.log(fileData);
+
+    const downloandPDFHandler = () => {
+
+        const arrayValues = [];
+        for (const value in values) {
+            arrayValues.push(values[value]);
+        }
+
+        const url = `http://localhost:5000/api/v1/drive/file/${fileId}`;
+        setPostFetch((prevState) => {
+            return {
+                url: url,
+                options: {
+                    method: "POST",
+                    credentials: "include",
+                    headers: {
+                        Accept: "application/json",
+                        "Content-Type": "application/json",
+                        "Access-Control-Allow-Credentials": true,
+                    },
+                    body: JSON.stringify({ keywords: arrayValues })
+                }
+            }
+        })
+
+    }
+
+    console.log(downloadData);
+
     return (
         <div className=''>
             <Scaffold>
-
                 <div className='flex justify-start items-center py-8'>
                     <HiOutlineDocumentText className='text-blue-600 w-16 h-16 min-w-max' />
                     <h2>{file?.name}</h2>
                 </div>
-
                 {fileError && <Modal title={`We found a problem 👀`} bodyComponent={
                     <div className='space-y-2'>
                         <p className=''>It looks like your doc has an error: <span className='font-bold	'>{fileError}</span></p>
                         <p>Make sure that your doc contains the proper format 👇</p>
-                        <ol className='list-decimal pl-12 space-y-2'>
+                        <ol className='list-decimal pl-12 space-y-4'>
                             <li className='space-y-2'>
-                                <p>All your template words have double curly brackets (both sides, no spaces):</p>
+                                <p>All your template words need to be formatted with double curly brackets (both sides, no spaces):</p>
                                 <div>
                                     <span className='mr-4'>✅</span>
                                     <span className='bg-green-300 rounded-sm outline-4 outline outline-green-300 font-bold'>{'{{firstName}}'}</span>
@@ -90,7 +131,7 @@ const File = () => {
                                 </div>
                             </li>
                             <li className='space-y-2'>
-                                <p>Also, review that your template words are unique</p>
+                                <p>Also, review that your template words are unique (v2 of thi product will handle double)</p>
                                 <div className='space-x-4'>
                                     <span>✅</span>
                                     <span className='bg-green-300 rounded-sm outline-4 outline outline-green-300 font-bold '>{'{{firstName1}}'}</span>
@@ -125,9 +166,9 @@ const File = () => {
                     <div className='flex flex-row space-x-16'>
                         <div className='flex-1 z-20'>
                             {fileData.data.thumbnailLink &&
-                                <div className='inline-block drop-shadow-xl rounded-2xl overflow-hidden'>
-                                    <img className='pointer-events-none	'
-                                        src={fileData.data.thumbnailLink}
+                                <div className='inline-block drop-shadow-xl rounded-2xl overflow-hidden w-full'>
+                                    <img referrerPolicy="no-referrer" className='pointer-events-none w-full'
+                                        src={fileData.data.thumbnailLink + '&sz=w800'}
                                         alt='Google doc thumbnail' />
                                 </div>
                             }
@@ -160,7 +201,7 @@ const File = () => {
                                         <h4 className='pb-8'>Download your file 📝</h4>
                                         <div className='p-8 border border-gray-300 rounded-lg space-y-8'>
                                             <button
-                                                onClick={() => refHandlerCarousel.current.prevChildMethod()}
+                                                onClick={() => downloandPDFHandler()}
                                                 className="w-full flex flex-row justify-center items-center space-x-1 text-white bg-gray-600 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                                                 <HiDownload className='text-white w-6 h-6 min-w-max' />
                                                 <span>Download PDF</span>

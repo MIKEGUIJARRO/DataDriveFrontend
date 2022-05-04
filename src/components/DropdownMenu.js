@@ -22,25 +22,17 @@ const DropdownMenu = ({ profilePic, displayName, logoutHandler }) => {
                 </button>
             </div>
             {open &&
-                <div className='absolute right-0 mt-2 py-4 drop-shadow-lg bg-white rounded-md'>
+                <div className='absolute right-0 mt-2 py-4 drop-shadow-lg bg-white rounded-md w-full'>
+                    
                     <ul className='space-y-2'>
-
-                        <li className='hover:bg-gray-100'>
-                            <Link to={'/profile'} className='block px-4 py-1 w-full text-left'>
-                                Profile
-                            </Link>
-                        </li>
-
                         <li className='hover:bg-gray-100'>
                             <Link to={'/settings'} className='block px-4 py-1 w-full text-left'>
-                                Account Settings
+                                Help
                             </Link>
                         </li>
-
                         <li className='px-4'>
                             <hr />
                         </li>
-
                         <li className='hover:bg-gray-100'>
                             <button className='block px-4 py-1 w-full text-left' onClick={logoutHandler}>
                                 Logout

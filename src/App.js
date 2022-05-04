@@ -6,13 +6,13 @@ import Landing from './pages/Landing';
 import Auth from './pages/Auth';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
+import { Help } from './pages/Help';
+import Profile from './pages/Profile';
 
 import { useFetch } from './hooks/useFetch';
 import { useUser } from './hooks/useUser';
 import ProtectedRoute from './components/ProtectedRoute';
-import Profile from './pages/Profile';
 import ProtectedRouteLogged from './components/ProtectedRouteLogged';
-import { Settings } from './pages/Settings';
 import File from './pages/File';
 
 
@@ -57,7 +57,7 @@ function App() {
             <Route element={<ProtectedRoute />}>
               <Route path='/home' element={<Home />} />
               <Route path='/profile' element={<Profile />} />
-              <Route path='/settings' element={<Settings />} />
+              <Route path='/help' element={<Help />} />
               <Route path='/file/:fileId' element={<File />} />
             </Route>
           </Route>

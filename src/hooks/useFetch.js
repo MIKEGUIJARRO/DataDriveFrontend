@@ -28,7 +28,6 @@ export const useFetch = (url, fetchOptions, processData) => {
         const fetchData = async () => {
             try {
                 setIsPending(true);
-
                 const res = await fetch(url, { ...fetchOptions, signal: controller.signal });
                 if (!res.ok) {
                     const resError = await res.json();
@@ -49,8 +48,9 @@ export const useFetch = (url, fetchOptions, processData) => {
                 }
             }
         };
-
-        fetchData();
+        if (url !== '') {
+            fetchData();
+        }
 
         // Cleanup function for unmouting phase
         return () => {

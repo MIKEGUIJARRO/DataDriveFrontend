@@ -22,7 +22,7 @@ const Home = () => {
     };
 
     const { data: driveData, error: driveError, isPending: driveIsPending } = useFetch(urlDrive, options);
-    
+
     const folderSelectHandler = (id, name) => {
         setBreadcrumb((prevState) => [...prevState, { name, id }]);
 
@@ -43,7 +43,7 @@ const Home = () => {
                     <div className='flex py-8'>
                         <ul className='inline-flex items-center space-x-1 md:space-x-3'>
                             {breadcrumb.map((item, i) => (
-                                <li className='inline-flex items-center'>
+                                <li key={i} className='inline-flex items-center'>
                                     {i > 0 && <HiChevronRight />}
                                     <button
                                         onClick={() => breadcrumbSelectHandler(i)}
