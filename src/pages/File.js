@@ -18,7 +18,7 @@ const File = () => {
 
     const [file, setFile] = useState({ id: fileId, name: fileName || 'Loading...' });
     const [fetchGetFile, setFetchGetFile] = useState({
-        url: `http://localhost:5000/api/v1/drive/file/${fileId}`,
+        url: `https://datadrivebackend.herokuapp.com/api/v1/drive/file/${fileId}`,
         options: {
             method: "GET",
             credentials: "include",
@@ -74,7 +74,7 @@ const File = () => {
 
     const downloandPDFHandler = () => {
 
-        const url = `http://localhost:5000/api/v1/drive/file/${fileId}`;
+        const url = `https://datadrivebackend.herokuapp.com/api/v1/drive/file/${fileId}`;
         setFetchPostFile((prevState) => {
             return {
                 url: url,

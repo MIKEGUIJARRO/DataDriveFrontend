@@ -9,7 +9,7 @@ import LoadingSpinner from '../components/LoadingSpinner';
 const Home = () => {
     const [breadcrumb, setBreadcrumb] = useState([{ name: 'My Drive', id: 'root' }]);
 
-    const urlDrive = `http://localhost:5000/api/v1/drive?folderId=${breadcrumb[breadcrumb.length - 1].id}`
+    const urlDrive = `https://datadrivebackend.herokuapp.com/api/v1/drive?folderId=${breadcrumb[breadcrumb.length - 1].id}`
 
     const options = {
         method: "GET",
