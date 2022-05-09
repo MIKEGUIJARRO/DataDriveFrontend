@@ -28,7 +28,7 @@ export const UserProvider = ({ children }) => {
 
     const logoutUser = () => {
         dispatchFn({ type: LOGOUT, payload: null });
-        window.open("http://localhost:5000/api/v1/auth/logout", "_self");
+        window.open("https://datadrivebackend.herokuapp.com/api/v1/auth/logout", "_self");
     }
 
     return (
