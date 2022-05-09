@@ -17,7 +17,7 @@ const File = () => {
     const fileName = location.state?.fileName;
 
     const [file, setFile] = useState({ id: fileId, name: fileName || 'Loading...' });
-    const [fetchGetFile, setGetFetch] = useState({
+    const [fetchGetFile, setFetchGetFile] = useState({
         url: `http://localhost:5000/api/v1/drive/file/${fileId}`,
         options: {
             method: "GET",
@@ -30,7 +30,7 @@ const File = () => {
         }
     });
 
-    const [fetchPostFile, setPostFetch] = useState({
+    const [fetchPostFile, setFetchPostFile] = useState({
         url: ``,
         options: {
             method: "POST",
@@ -61,7 +61,12 @@ const File = () => {
             updateBulkValues(initialStateInputs);
         }
     }, [fileData]);
-    console.log('Inputs', JSON.stringify(values, null, 4));
+
+    useEffect(() => {
+        if (downloadData) {
+            downloadPDF(downloadData.data.arrayBuffer);
+        }
+    }, [downloadData]);
 
     const formHandler = () => {
         refHandlerCarousel.current.nextChildMethod()
@@ -69,13 +74,8 @@ const File = () => {
 
     const downloandPDFHandler = () => {
 
-        const arrayValues = [];
-        for (const value in values) {
-            arrayValues.push(values[value]);
-        }
-
         const url = `http://localhost:5000/api/v1/drive/file/${fileId}`;
-        setPostFetch((prevState) => {
+        setFetchPostFile((prevState) => {
             return {
                 url: url,
                 options: {
@@ -86,14 +86,25 @@ const File = () => {
                         "Content-Type": "application/json",
                         "Access-Control-Allow-Credentials": true,
                     },
-                    body: JSON.stringify({ keywords: arrayValues })
+                    body: JSON.stringify({ keywords: values })
                 }
             }
         })
 
     }
 
-    console.log(downloadData);
+    console.log(downloadData?.data?.arrayBuffer);
+    const downloadPDF = (pdf) => {
+        const linkSource = `data:application/pdf;base64,${pdf}`;
+        const downloadLink = document.createElement("a");
+        //Pending to change file 
+        const fileName = "file.pdf";
+
+        downloadLink.href = linkSource;
+        downloadLink.download = fileName;
+        downloadLink.click();
+    }
+
 
     return (
         <div className=''>
@@ -201,10 +212,11 @@ const File = () => {
                                         <h4 className='pb-8'>Download your file 📝</h4>
                                         <div className='p-8 border border-gray-300 rounded-lg space-y-8'>
                                             <button
+                                                disabled={downloadIsPending ? true : false}
                                                 onClick={() => downloandPDFHandler()}
                                                 className="w-full flex flex-row justify-center items-center space-x-1 text-white bg-gray-600 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                                                 <HiDownload className='text-white w-6 h-6 min-w-max' />
-                                                <span>Download PDF</span>
+                                                <span className='flex justify-center items-center'>{downloadIsPending ? 'Loading...' : 'Download PDF'}</span>
                                             </button>
                                             <button
                                                 onClick={() => refHandlerCarousel.current.prevChildMethod()}

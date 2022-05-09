@@ -26,7 +26,7 @@ const DropdownMenu = ({ profilePic, displayName, logoutHandler }) => {
                     
                     <ul className='space-y-2'>
                         <li className='hover:bg-gray-100'>
-                            <Link to={'/settings'} className='block px-4 py-1 w-full text-left'>
+                            <Link to={'/help'} className='block px-4 py-1 w-full text-left'>
                                 Help
                             </Link>
                         </li>
