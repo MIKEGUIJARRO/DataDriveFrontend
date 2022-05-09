@@ -22,7 +22,7 @@ export default function Auth() {
         //window.open('http://localhost:5000/api/v1/auth/google', '_blank', windowFeatures);
 
         // Opens window locally
-        window.open('http://localhost:5000/api/v1/auth/google', '_self');
+        window.open('https://datadrivebackend.herokuapp.com/api/v1/auth/google', '_self');
     }
 
     return (
