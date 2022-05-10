@@ -13,6 +13,8 @@ export const useFetch = (url, fetchOptions, processData) => {
     // If no processing function is passed just return the data
     // The callback hook ensures that the function is only created once
     // and hence the effect hook below doesn't start an infinite loop
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     const processJson = useCallback(
         processData || ((jsonBody) => (jsonBody)),
         []);

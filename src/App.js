@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import { BrowserRouter } from 'react-router-dom';
 import PageLayout from './components/PageLayout';
 import Landing from './pages/Landing';
@@ -41,6 +41,7 @@ function App() {
       return;
     }
     authenticateUser(userData.user);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userData]);
 
   console.log('user:', userData, 'pending:', userIsPending, 'error:', userError);
