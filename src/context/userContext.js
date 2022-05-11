@@ -1,5 +1,6 @@
 import React, { createContext, useReducer } from 'react'
 import { AUTH, LOGOUT } from '../constants/actionTypes';
+import { config } from '../constants/constants';
 
 export const UserContext = createContext(null);
 
@@ -28,7 +29,7 @@ export const UserProvider = ({ children }) => {
 
     const logoutUser = () => {
         dispatchFn({ type: LOGOUT, payload: null });
-        window.open("https://datadrivebackend.herokuapp.com/api/v1/auth/logout", "_self");
+        window.open(`${config.url.API_URL}/api/v1/auth/logout`, "_self");
     }
 
     return (

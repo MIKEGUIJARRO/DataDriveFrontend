@@ -8,6 +8,7 @@ import { useFetch } from '../hooks/useFetch';
 import { useForm } from '../hooks/useForm';
 import { HiDownload } from 'react-icons/hi';
 import Carousel from '../components/Carousel';
+import { config } from '../constants/constants';
 
 
 const File = () => {
@@ -18,7 +19,7 @@ const File = () => {
 
     const [file, setFile] = useState({ id: fileId, name: fileName || 'Loading...' });
     const [fetchGetFile, setFetchGetFile] = useState({
-        url: `https://datadrivebackend.herokuapp.com/api/v1/drive/file/${fileId}`,
+        url: `${config.url.API_URL}/api/v1/drive/file/${fileId}`,
         options: {
             method: "GET",
             credentials: "include",
@@ -74,7 +75,7 @@ const File = () => {
 
     const downloandPDFHandler = () => {
 
-        const url = `https://datadrivebackend.herokuapp.com/api/v1/drive/file/${fileId}`;
+        const url = `${config.url.API_URL}/api/v1/drive/file/${fileId}`;
         setFetchPostFile((prevState) => {
             return {
                 url: url,

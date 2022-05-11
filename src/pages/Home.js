@@ -6,10 +6,11 @@ import FileExplorer from '../components/FileExplorer';
 
 import { useFetch } from '../hooks/useFetch';
 import LoadingSpinner from '../components/LoadingSpinner';
+import { config } from '../constants/constants';
 const Home = () => {
     const [breadcrumb, setBreadcrumb] = useState([{ name: 'My Drive', id: 'root' }]);
 
-    const urlDrive = `https://datadrivebackend.herokuapp.com/api/v1/drive?folderId=${breadcrumb[breadcrumb.length - 1].id}`
+    const urlDrive = `${config.url.API_URL}/api/v1/drive?folderId=${breadcrumb[breadcrumb.length - 1].id}`
 
     const options = {
         method: "GET",

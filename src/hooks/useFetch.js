@@ -30,7 +30,7 @@ export const useFetch = (url, fetchOptions, processData) => {
         const fetchData = async () => {
             try {
                 setIsPending(true);
-                const res = await fetch(url, { ...fetchOptions, signal: controller.signal });
+                const res = await fetch(url, { ...fetchOptions,  signal: controller.signal });
                 if (!res.ok) {
                     const resError = await res.json();
                     console.log(resError)

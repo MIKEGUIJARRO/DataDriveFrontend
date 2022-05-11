@@ -5,6 +5,7 @@ import demoImage from '../assets/DemoImage.png';
 
 import { Link, useLocation } from 'react-router-dom'
 import { motion } from "framer-motion"
+import { config } from '../constants/constants';
 
 
 export default function Auth() {
@@ -22,7 +23,7 @@ export default function Auth() {
         //window.open('http://localhost:5000/api/v1/auth/google', '_blank', windowFeatures);
 
         // Opens window locally
-        window.open('https://datadrivebackend.herokuapp.com/api/v1/auth/google', '_self');
+        window.open(`${config.url.API_URL}/api/v1/auth/google`, '_self');
     }
 
     return (

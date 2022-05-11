@@ -14,10 +14,10 @@ import { useUser } from './hooks/useUser';
 import ProtectedRoute from './components/ProtectedRoute';
 import ProtectedRouteLogged from './components/ProtectedRouteLogged';
 import File from './pages/File';
-
+import { config } from './constants/constants';
 
 function App() {
-  const url = 'https://datadrivebackend.herokuapp.com/api/v1/auth/login/success';
+  const url = `${config.url.API_URL}/api/v1/auth/login/success`;
   const options = {
     method: "GET",
     credentials: "include",
