@@ -17,6 +17,16 @@ At work I am required to create templates on google drive, update the placeholde
   <br>
 </h2>
 
+
+## Web app Architecture 🏗
+<h2 align="center">
+  <a href="https://datadrive.netlify.app" target="_blank"> 
+    <img src="./architecture.png" alt="Look up!" width="100%" />
+  </a>
+  <br>
+</h2>
+
+
 ## Features 💡
 ⚡️ Cookie session\
 ⚡️ Google Auth 2.0\
