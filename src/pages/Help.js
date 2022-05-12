@@ -1,4 +1,7 @@
+// Libraries
 import React from 'react'
+
+// Components
 import Scaffold from '../components/Scaffold'
 
 export const Help = () => {

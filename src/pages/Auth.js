@@ -1,27 +1,22 @@
+// Libraries
 import React from 'react'
+import { Link, useLocation } from 'react-router-dom'
+import { motion } from "framer-motion"
+
+// Assets
 import gLogo from '../assets/g_logo.svg';
 import logo from '../assets/logo.svg';
 import demoImage from '../assets/DemoImage.png';
 
-import { Link, useLocation } from 'react-router-dom'
-import { motion } from "framer-motion"
+// Extra
 import { config } from '../constants/constants';
 
 
 export default function Auth() {
     const location = useLocation();
     const auth = location.state?.auth || null;
-    const from = location.state?.from?.path || '/';
 
     const googleAuth = () => {
-        const width = 600;
-        const height = 650;
-        const y = window.top.outerHeight / 2 + window.top.screenY - (width / 2);
-        const x = window.top.outerWidth / 2 + window.top.screenX - (height / 2);
-
-        let windowFeatures = `toolbar=no, menubar=no, width=${width}, height=${height}, top=${y}, left=${x}`;
-        //window.open('http://localhost:5000/api/v1/auth/google', '_blank', windowFeatures);
-
         // Opens window locally
         window.open(`${config.url.API_URL}/api/v1/auth/google`, '_self');
     }

@@ -1,20 +1,28 @@
+// Libraries
 import { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { BrowserRouter } from 'react-router-dom';
-import PageLayout from './components/PageLayout';
+
+// Pages
 import Landing from './pages/Landing';
 import Auth from './pages/Auth';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 import { Help } from './pages/Help';
-import Profile from './pages/Profile';
+import File from './pages/File';
 
-import { useFetch } from './hooks/useFetch';
-import { useUser } from './hooks/useUser';
+// Components
+import PageLayout from './components/PageLayout';
 import ProtectedRoute from './components/ProtectedRoute';
 import ProtectedRouteLogged from './components/ProtectedRouteLogged';
-import File from './pages/File';
+
+// Hooks
+import { useFetch } from './hooks/useFetch';
+import { useUser } from './hooks/useUser';
+
+// Extra
 import { config } from './constants/constants';
+
 
 function App() {
   const url = `${config.url.API_URL}/api/v1/auth/login/success`;
@@ -44,7 +52,6 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userData]);
 
-  console.log('user:', userData, 'pending:', userIsPending, 'error:', userError);
   return (
     <div className="App">
       <BrowserRouter>
@@ -57,7 +64,6 @@ function App() {
             {/* Protected routes */}
             <Route element={<ProtectedRoute />}>
               <Route path='/home' element={<Home />} />
-              <Route path='/profile' element={<Profile />} />
               <Route path='/help' element={<Help />} />
               <Route path='/file/:fileId' element={<File />} />
             </Route>

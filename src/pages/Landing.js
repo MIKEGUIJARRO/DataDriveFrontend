@@ -1,9 +1,15 @@
+// Libraries
 import React from 'react'
-import Scaffold from '../components/Scaffold'
-import demoImage from '../assets/DemoImage.png';
-
 import { Link } from 'react-router-dom';
 import { motion } from "framer-motion"
+
+// Components
+import Scaffold from '../components/Scaffold'
+
+// Assets
+import demoImage from '../assets/DemoImage.png';
+
+
 
 
 export default function Landing() {

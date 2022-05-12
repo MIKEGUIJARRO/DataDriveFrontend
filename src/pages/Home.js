@@ -1,12 +1,20 @@
+// Libraries
 import React, { useState } from 'react'
-import { HiChevronRight, HiHome } from 'react-icons/hi';
+
+// Components
+import FileExplorer from '../components/FileExplorer';
+import LoadingSpinner from '../components/LoadingSpinner';
 import Scaffold from '../components/Scaffold';
 
-import FileExplorer from '../components/FileExplorer';
-
+// Hooks
 import { useFetch } from '../hooks/useFetch';
-import LoadingSpinner from '../components/LoadingSpinner';
+
+// Assets
+import { HiChevronRight, HiHome } from 'react-icons/hi';
+
+// Extra
 import { config } from '../constants/constants';
+
 const Home = () => {
     const [breadcrumb, setBreadcrumb] = useState([{ name: 'My Drive', id: 'root' }]);
 

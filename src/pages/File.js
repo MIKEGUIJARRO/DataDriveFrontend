@@ -1,13 +1,23 @@
+// Libraries
 import React, { useEffect, useRef, useState } from 'react'
-import { HiOutlineDocumentText } from 'react-icons/hi';
 import { Link, useLocation, useParams } from 'react-router-dom';
+
+// Hooks
+import { useForm } from '../hooks/useForm';
+import { useFetch } from '../hooks/useFetch';
+
+// Components
+import Carousel from '../components/Carousel';
 import LoadingSpinner from '../components/LoadingSpinner';
 import Modal from '../components/Modal';
 import Scaffold from '../components/Scaffold';
-import { useFetch } from '../hooks/useFetch';
-import { useForm } from '../hooks/useForm';
+
+
+// Assets
 import { HiDownload } from 'react-icons/hi';
-import Carousel from '../components/Carousel';
+import { HiOutlineDocumentText } from 'react-icons/hi';
+
+// Extra
 import { config } from '../constants/constants';
 
 
@@ -94,7 +104,6 @@ const File = () => {
 
     }
 
-    console.log(downloadData?.data?.arrayBuffer);
     const downloadPDF = (pdf) => {
         const linkSource = `data:application/pdf;base64,${pdf}`;
         const downloadLink = document.createElement("a");
