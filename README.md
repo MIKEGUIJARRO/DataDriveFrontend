@@ -24,6 +24,8 @@ At work I am required to create templates on google drive, update the placeholde
 ⚡️ Global State Management with Context API\
 ⚡️ Fully responsive\
 ⚡️ Dope animations 🔥
+⚡️ Deployed on Netlify
+
 
 To view this webpage, **[click here](https://datadrive.netlify.app/)**.
 
@@ -33,6 +35,8 @@ To view this webpage, **[click here](https://datadrive.netlify.app/)**.
 - [Tailwind](https://tailwindcss.com/) - Front-end utility-first CSS framework 
 - [Hero Icons](https://heroicons.com/) - Nice open source icons
 - [Framer Motion](https://www.framer.com/motion/) - Motion library for React
+-  [Netlify](https://www.netlify.com/) - Cloud computing company that offers hosting
+
 
 
 ## Other resources 🧬
