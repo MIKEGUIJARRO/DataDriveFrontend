@@ -19,6 +19,7 @@ import ProtectedRouteLogged from './components/ProtectedRouteLogged';
 // Hooks
 import { useFetch } from './hooks/useFetch';
 import { useUser } from './hooks/useUser';
+import { useModal } from './hooks/useModal'
 
 // Extra
 import { config } from './constants/constants';
@@ -43,7 +44,7 @@ function App() {
   } = useFetch(url, options);
 
   const { authenticateUser } = useUser();
-
+  const modal = useModal();
   useEffect(() => {
     if (!userData?.user) {
       return;
@@ -51,6 +52,9 @@ function App() {
     authenticateUser(userData.user);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userData]);
+
+  console.log('Modal:', modal);
+
 
   return (
     <div className="App">

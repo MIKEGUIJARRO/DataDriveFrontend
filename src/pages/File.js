@@ -19,12 +19,14 @@ import { HiOutlineDocumentText } from 'react-icons/hi';
 
 // Extra
 import { config } from '../constants/constants';
+import { useModal } from '../hooks/useModal';
 
 
 const File = () => {
 
     const { fileId } = useParams();
     const location = useLocation()
+    const { showModal } = useModal();
     const fileName = location.state?.fileName;
 
     const [file, setFile] = useState({ id: fileId, name: fileName || 'Loading...' });
@@ -79,6 +81,66 @@ const File = () => {
         }
     }, [downloadData]);
 
+    useEffect(() => {
+        if (fileError) {
+            const title = 'We found a problem 👀';
+            const bodyComponent = <div className='space-y-2'>
+                <p className=''>It looks like your doc has an error: <span className='font-bold '>{fileError}</span></p>
+                <p>Make sure that your doc contains the proper format 👇</p>
+                <ol className='list-decimal pl-12 space-y-4'>
+                    <li className='space-y-2'>
+                        <p>All your template words need to be formatted with double curly brackets (both sides, no spaces):</p>
+                        <div>
+                            <span className='mr-4'>✅</span>
+                            <span className='bg-green-300 rounded-sm outline-4 outline outline-green-300 font-bold'>{'{{firstName}}'}</span>
+                        </div>
+                        <div>
+                            <span className='mr-4'>❌</span>
+                            <span className='bg-red-300 rounded-sm outline-4 outline outline-red-300 font-bold'>{'{firstName} }'}</span>
+                        </div>
+
+                    </li>
+                    <li className='space-y-2'>
+                        <p>Make sure that the template words does not have any spaces between words:</p>
+                        <div>
+                            <span className='mr-4'>✅</span>
+                            <span className='bg-green-300 rounded-sm outline-4 outline outline-green-300 font-bold'>{'{{lastName}}'}</span>
+                        </div>
+                        <div>
+                            <span className='mr-4'>❌</span>
+                            <span className='bg-red-300 rounded-sm outline-4 outline outline-red-300 font-bold'>{'{{last Name}}'}</span>
+                        </div>
+                    </li>
+                    <li className='space-y-2'>
+                        <p>Also, review that your template words are unique (v2 of thi product will handle double)</p>
+                        <div className='space-x-4'>
+                            <span>✅</span>
+                            <span className='bg-green-300 rounded-sm outline-4 outline outline-green-300 font-bold '>{'{{firstName1}}'}</span>
+                            <span className='bg-green-300 rounded-sm outline-4 outline outline-green-300 font-bold'>{'{{firstName2}}'}</span>
+                        </div>
+                        <div className='space-x-4'>
+                            <span>❌</span>
+                            <span className='bg-red-300 rounded-sm outline-4 outline outline-red-300 font-bold'>{'{{firstName}}'}</span>
+                            <span className='bg-red-300 rounded-sm outline-4 outline outline-red-300 font-bold'>{'{{firstName}}'}</span>
+                        </div>
+                    </li>
+                    <li className='space-y-2'>
+                        <p>Save your last changes 💾</p>
+                    </li>
+                </ol>
+            </div>;
+            const footerComponent = <div className='flex flex-row justify-end'>
+                <a
+                    href={`https://docs.google.com/document/d/${fileId}/edit`}
+                    target='_blank'
+                    className='text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center'>
+                    Edit document 📄
+                </a>
+            </div>;
+            showModal(title, bodyComponent, footerComponent);
+        }
+    }, [fileError]);
+
     const formHandler = () => {
         refHandlerCarousel.current.nextChildMethod()
     }
@@ -116,6 +178,7 @@ const File = () => {
     }
 
 
+
     return (
         <div className=''>
             <Scaffold>
@@ -123,61 +186,6 @@ const File = () => {
                     <HiOutlineDocumentText className='text-blue-600 w-16 h-16 min-w-max' />
                     <h2>{file?.name}</h2>
                 </div>
-                {fileError && <Modal title={`We found a problem 👀`} bodyComponent={
-                    <div className='space-y-2'>
-                        <p className=''>It looks like your doc has an error: <span className='font-bold	'>{fileError}</span></p>
-                        <p>Make sure that your doc contains the proper format 👇</p>
-                        <ol className='list-decimal pl-12 space-y-4'>
-                            <li className='space-y-2'>
-                                <p>All your template words need to be formatted with double curly brackets (both sides, no spaces):</p>
-                                <div>
-                                    <span className='mr-4'>✅</span>
-                                    <span className='bg-green-300 rounded-sm outline-4 outline outline-green-300 font-bold'>{'{{firstName}}'}</span>
-                                </div>
-                                <div>
-                                    <span className='mr-4'>❌</span>
-                                    <span className='bg-red-300 rounded-sm outline-4 outline outline-red-300 font-bold'>{'{firstName} }'}</span>
-                                </div>
-
-                            </li>
-                            <li className='space-y-2'>
-                                <p>Make sure that the template words does not have any spaces between words:</p>
-                                <div>
-                                    <span className='mr-4'>✅</span>
-                                    <span className='bg-green-300 rounded-sm outline-4 outline outline-green-300 font-bold'>{'{{lastName}}'}</span>
-                                </div>
-                                <div>
-                                    <span className='mr-4'>❌</span>
-                                    <span className='bg-red-300 rounded-sm outline-4 outline outline-red-300 font-bold'>{'{{last Name}}'}</span>
-                                </div>
-                            </li>
-                            <li className='space-y-2'>
-                                <p>Also, review that your template words are unique (v2 of thi product will handle double)</p>
-                                <div className='space-x-4'>
-                                    <span>✅</span>
-                                    <span className='bg-green-300 rounded-sm outline-4 outline outline-green-300 font-bold '>{'{{firstName1}}'}</span>
-                                    <span className='bg-green-300 rounded-sm outline-4 outline outline-green-300 font-bold'>{'{{firstName2}}'}</span>
-                                </div>
-                                <div className='space-x-4'>
-                                    <span>❌</span>
-                                    <span className='bg-red-300 rounded-sm outline-4 outline outline-red-300 font-bold'>{'{{firstName}}'}</span>
-                                    <span className='bg-red-300 rounded-sm outline-4 outline outline-red-300 font-bold'>{'{{firstName}}'}</span>
-                                </div>
-                            </li>
-                            <li className='space-y-2'>
-                                <p>Save your last changes 💾</p>
-                            </li>
-                        </ol>
-                    </div>}
-                    footerComponent={
-                        <div>
-                            <Link to={'/home'}
-                                className='text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center'>
-                                Go back home
-                            </Link>
-                        </div>
-                    }
-                />}
                 {fileIsPending &&
                     <div className='flex justify-center items-center mt-36 z-20'>
                         <LoadingSpinner />
