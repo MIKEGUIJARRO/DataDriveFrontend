@@ -1,5 +1,5 @@
 // Libraries
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { Link, useLocation, useParams } from 'react-router-dom';
 
 // Hooks
@@ -9,7 +9,6 @@ import { useFetch } from '../hooks/useFetch';
 // Components
 import Carousel from '../components/Carousel';
 import LoadingSpinner from '../components/LoadingSpinner';
-import Modal from '../components/Modal';
 import Scaffold from '../components/Scaffold';
 
 
@@ -28,6 +27,13 @@ const File = () => {
     const location = useLocation()
     const { showModal } = useModal();
     const fileName = location.state?.fileName;
+
+    const memoShowModal = useCallback(
+        (title, bodyComponent, footerComponent) => {
+            showModal(title, bodyComponent, footerComponent);
+        },
+        [showModal]
+    )
 
     const [file, setFile] = useState({ id: fileId, name: fileName || 'Loading...' });
     const [fetchGetFile, setFetchGetFile] = useState({
@@ -78,6 +84,8 @@ const File = () => {
     useEffect(() => {
         if (downloadData) {
             downloadPDF(downloadData.data.arrayBuffer);
+            setFetchPostFile({ url: '', options: {} });
+
         }
     }, [downloadData]);
 
@@ -137,9 +145,9 @@ const File = () => {
                     Edit document 📄
                 </a>
             </div>;
-            showModal(title, bodyComponent, footerComponent);
+            memoShowModal(title, bodyComponent, footerComponent);
         }
-    }, [fileError]);
+    }, [fileError, fileId]);
 
     const formHandler = () => {
         refHandlerCarousel.current.nextChildMethod()
@@ -148,8 +156,8 @@ const File = () => {
     const downloandPDFHandler = () => {
 
         const url = `${config.url.API_URL}/api/v1/drive/file/${fileId}`;
-        setFetchPostFile((prevState) => {
-            return {
+        setFetchPostFile(
+            {
                 url: url,
                 options: {
                     method: "POST",
@@ -162,8 +170,7 @@ const File = () => {
                     body: JSON.stringify({ keywords: values })
                 }
             }
-        })
-
+        );
     }
 
     const downloadPDF = (pdf) => {

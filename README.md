@@ -33,7 +33,7 @@ At work I am required to create templates on google drive, update the placeholde
 ⚡️ Protected routes\
 ⚡️ Global State Management with Context API\
 ⚡️ Fully responsive\
-⚡️ Dope animations 🔥
+⚡️ Dope animations 🔥\
 ⚡️ Deployed on Netlify
 
 
