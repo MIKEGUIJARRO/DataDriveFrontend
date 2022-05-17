@@ -39,16 +39,16 @@ export const Help = () => {
                             </div>
                         </li>
                         <li className='space-y-2'>
-                            <p>Also, review that your template words are unique (v2 of thi product will handle double)</p>
+                            <p>The keyword should be formed with numbers, letters or lowerCase:</p>
                             <div className='space-x-4'>
                                 <span>✅</span>
                                 <span className='bg-green-300 rounded-sm outline-4 outline outline-green-300 font-bold '>{'{{firstName1}}'}</span>
-                                <span className='bg-green-300 rounded-sm outline-4 outline outline-green-300 font-bold'>{'{{firstName2}}'}</span>
+                                <span className='bg-green-300 rounded-sm outline-4 outline outline-green-300 font-bold'>{'{{first_name_2}}'}</span>
                             </div>
                             <div className='space-x-4'>
                                 <span>❌</span>
-                                <span className='bg-red-300 rounded-sm outline-4 outline outline-red-300 font-bold'>{'{{firstName}}'}</span>
-                                <span className='bg-red-300 rounded-sm outline-4 outline outline-red-300 font-bold'>{'{{firstName}}'}</span>
+                                <span className='bg-red-300 rounded-sm outline-4 outline outline-red-300 font-bold'>{'{{firstName&LastName}}'}</span>
+                                <span className='bg-red-300 rounded-sm outline-4 outline outline-red-300 font-bold'>{'{{!@FirstName#$%}}'}</span>
                             </div>
                         </li>
                         <li className='space-y-2'>
